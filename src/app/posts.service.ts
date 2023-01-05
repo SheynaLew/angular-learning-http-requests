@@ -21,7 +21,7 @@ export class PostsService {
   };
 
   fetchPosts() {
-    this.http
+    return this.http
       .get<{ [key: string]: Post }>('https://ng-complete-guide-fe04b-default-rtdb.europe-west1.firebasedatabase.app/posts.json')
       // .pipe(map((responseData: { [key: string]: Post }) => {
       .pipe(map(responseData => {
@@ -33,8 +33,6 @@ export class PostsService {
           };
         };
         return postsArray;
-      }))
-      .subscribe(posts => {
-      });
+      }));
   };
 };
