@@ -18,7 +18,9 @@ export class PostsService {
         'https://ng-complete-guide-fe04b-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         postData,
         {
-          observe: 'response'
+          observe: 'response',
+          responseType: 'json'
+          // app will break here if you use anything other than json
         }
       ).subscribe(responseData => {
         console.log("response data (response)", responseData);
@@ -63,7 +65,8 @@ export class PostsService {
     return this.http
       .delete('https://ng-complete-guide-fe04b-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         {
-          observe: 'events'
+          observe: 'events',
+          responseType: 'text'
         }).pipe(tap(event => {
           console.log("event", event);
           if (event.type === HttpEventType.Sent) {
