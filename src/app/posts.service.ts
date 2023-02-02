@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Subject, throwError } from "rxjs";
 import { map, catchError } from 'rxjs/operators';
@@ -26,13 +26,17 @@ export class PostsService {
   };
 
   fetchPosts() {
+    let searchParams = new HttpParams();
+    searchParams = searchParams.append('print', 'pretty');
+    searchParams = searchParams.append('key', 'value');
     return this.http
       .get<{ [key: string]: Post }>(
         'https://ng-complete-guide-fe04b-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         {
           headers: new HttpHeaders({
             "Custom-Header": "Hello"
-          })
+          }),
+          params: searchParams
         })
       // .pipe(map((responseData: { [key: string]: Post }) => {
       .pipe(map(responseData => {
