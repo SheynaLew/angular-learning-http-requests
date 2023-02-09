@@ -13,6 +13,7 @@ export class PostsService {
 
   createAndStorePost(title: string, content: string) {
     const postData: Post = { title: title, content: content }
+    console.log("postData", postData)
     this.http
       .post<{ name: string }>(
         'https://ng-complete-guide-fe04b-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
@@ -24,7 +25,7 @@ export class PostsService {
         }
       ).subscribe(responseData => {
         console.log("response data (response)", responseData);
-        console.log("body", responseData.body)
+        // console.log("body", responseData.body)
       },
         error => {
           this.error.next(error.message);

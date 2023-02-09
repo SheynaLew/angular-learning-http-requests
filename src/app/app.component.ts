@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.error = errorMessage
     });
 
-    this.fetchAllPosts();
+    // this.fetchAllPosts();
   };
 
   onCreatePost(postData: Post) {
